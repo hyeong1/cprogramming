@@ -7,6 +7,7 @@ int main(void)
     x = 20;
     y = 10;
 
+    //연산결과를 변수에 저장
     sum = x + y;
     sub = x - y;
     mul = x * y;
