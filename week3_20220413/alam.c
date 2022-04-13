@@ -7,7 +7,11 @@ int main()
     scanf("%d %d", &H, &M);
 
     // 시간이 0으로 주어질 때
-    if (H == 0){
+    if (H == 0 && (M - 45) == 0){
+        M = M - 45;
+        printf("%d %d", H, M);
+    }
+    else if (H == 0){
         H = 24;
         if (M - 45 < 0){
         H = H - 1;
