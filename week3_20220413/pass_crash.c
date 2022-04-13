@@ -19,21 +19,27 @@ int main()
     scanf("%d", &t3);
 
     car = 170;
-    // 차의 높이가 터널보다 크면 충돌
-    if (car > t1){
+
+    // 첫번째 터널
+    // 차의 높이가 터널보다 크거나 같으면 충돌
+    if (car >= t1){  // == car < t1
         printf("CRASH\n");
     }
     // 차의 높이가 터널보다 작으면 무사히 통과
     else{
         printf("PASS\n");
     }
-    if (car > t2){
+
+    // 두번째 터널
+    if (car >= t2){
         printf("CRASH\n");
     }
     else{
         printf("PASS\n");
     }
-    if (car > t3){
+
+    // 세번째 터널
+    if (car >= t3){
         printf("CRASH\n");
     }
     else{
