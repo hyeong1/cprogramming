@@ -15,35 +15,29 @@ int main() {
         printf("%d\n", money);
     }
     //2 -모두 같지는 않음
-    //2-1
-    else if (dice1 == dice2 && dice1 != dice3) {
+    else if (dice1 == dice2 && dice1 != dice3) {  //2-1
         money = 1000 + dice1 * 100;
         printf("%d\n", money);
     }
-    //2-2
-    else if (dice1 == dice3 && dice1 != dice2) {
+    else if (dice1 == dice3 && dice1 != dice2) {  //2-2
         money = 1000 + dice1 * 100;
         printf("%d\n", money);
     }
-    //2-3
-    else if (dice2 == dice3 && dice2 != dice1) {
+    else if (dice2 == dice3 && dice2 != dice1) {  //2-3
         money = 1000 + dice2 * 100;
         printf("%d\n", money);
     }
     //3 -다 다름
     else {
-        //3-1 dice1이 클 때
-        if (dice1 > dice2 && dice1 > dice3) {
+        if (dice1 > dice2 && dice1 > dice3) {       //3-1 dice1이 가장 클 때
             money = dice1 * 100;
             printf("%d\n", money);
         }
-        //3-2 dice2가 클 때
-        else if (dice2 > dice1 && dice2 > dice3) {
+        else if (dice2 > dice1 && dice2 > dice3) {  //3-2 dice2가 가장 클 때
             money = dice2 * 100;
             printf("%d\n", money);
         }
-        //3-3 dice3이 클 때
-        else {
+        else {   //3-3 dice3이 가장 클 때
             money = dice3 * 100;
             printf("%d\n", money);
         }
