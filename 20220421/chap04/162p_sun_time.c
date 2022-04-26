@@ -1,4 +1,4 @@
-// 162쪽 태양빛 도달 시간 계산
+// 162?? ?¾?? ???? ?ð? ???
 #include <stdio.h>
 
 int main()
@@ -9,15 +9,15 @@ int main()
     double time;
     time = distance / light_speed;
     
-    printf("빛의 속도는 %fkm/s \n", light_speed);
+    printf("???? ????? %fkm/s \n", light_speed);
     printf("태양과 지구와의 거리 %fkm \n", distance);
     printf("도달 시간은 %f초 \n", time);
 
+    // time을 분으로 나타내기 - time을 60.0으로 나눈다.
     /*
     // 초 단위인 time을 분으로 바꾼다.
     time = time / 60.0;
     printf("도달 시간은 %f분\n", time);
-
     // time을 int형에 저장해서 분만 꺼낸다.
     int min = time;
     double sec = (time - min) * 60;
