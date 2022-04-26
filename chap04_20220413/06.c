@@ -12,7 +12,9 @@ int main()
 
     printf("%lf\n", num1);
     printf("%lf\n", num2);
-    printf("%lf", num1 + num2);
+    printf("%lf\n", num1 + num2);
+
+    printf("%lf", 3.32e-3 + 9.76e-8);
 
     return 0;
 }
