@@ -2,18 +2,19 @@
 
 int main()
 {
-    //ìš´ë™ì—ë„ˆì§€ E = m * v^2 / 2.0
-    //ì‚¬ìš©ìë¡œë¶€í„° ì§ˆëŸ‰mê³¼ ì†ë„vë¥¼ ì…ë ¥ë°›ì•„ì„œ Eë¥¼ ê³„ì‚°í•˜ëŠ” í”„ë¡œê·¸ë¨
-    //ëª¨ë“  ë³€ìˆ˜ëŠ” doubleí˜• ì‚¬ìš©
+    //¿îµ¿¿¡³ÊÁö E = m * v^2 / 2.0
+    //»ç¿ëÀÚ·ÎºÎÅÍ Áú·®m°ú ¼Óµµv¸¦ ÀÔ·Â¹Ş¾Æ¼­ E¸¦ °è»êÇÏ´Â ÇÁ·Î±×·¥
+    //¸ğµç º¯¼ö´Â doubleÇü »ç¿ë
     double kenergy, mass, speed;
 
-    printf("ì§ˆëŸ‰(kg): ");
+    printf("Áú·®(kg): ");
     scanf("%lf", &mass);
-    printf("ì†ë„(m/s): ");
+    printf("¼Óµµ(m/s): ");
     scanf("%lf", &speed);
 
-    kenergy = 0.5 * mass * speed * speed;
-    printf("ìš´ë™ì—ë„ˆì§€(J): %lf", kenergy);
+    // kenergy = 0.5 * mass * speed * speed;
+    kenergy = (mass * speed * speed) / 2.0;
+    printf("¿îµ¿¿¡³ÊÁö(J): %lf", kenergy);
 
     return 0;
 }
