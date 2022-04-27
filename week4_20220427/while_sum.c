@@ -5,7 +5,7 @@ int main() {
     int sum = 0;
 
     while (i < 11) {
-        sum = sum + i;
+        sum += i;
         i ++;
     }
 
