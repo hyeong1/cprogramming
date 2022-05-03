@@ -13,6 +13,6 @@ int main() {
     scanf("%d", &input);
 
     printf("%d", square(input));
-
+    
     return 0;
 }
