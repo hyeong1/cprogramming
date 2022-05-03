@@ -9,7 +9,7 @@ int square(int n) {
 
 int main() {
     int input;
-    printf("정수 입력: ");
+    printf("숫자 입력: ");
     scanf("%d", &input);
 
     printf("%d", square(input));
