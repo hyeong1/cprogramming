@@ -1,12 +1,15 @@
 #include <stdio.h>
 
-void selectStar(int num) {
+void selectStar(int num, int line) {
     int i;
     while (i = 1) {
         // 1번 왼쪽 직삼각형
-        if (num == 1) {
-           for (int i = 0;i < 5;i++) {
-               for (int j = 4;j > i;j--) {
+        if (num == 0) {
+            break;
+        } 
+        else if (num == 1) {
+           for (int i = 0;i < line;i++) {
+               for (int j = line - 1;j > i;j--) {
                    printf("*");
                    }
                 printf("*\n");
@@ -15,11 +18,11 @@ void selectStar(int num) {
         }
         // 2번 오른쪽 직삼각형
         else if (num == 2) {
-            for (int i = 0;i < 5;i++) {
+            for (int i = 0;i < line;i++) {
                 for (int j = 0;j < i;j++) {
                     printf(" ");
                 }
-                for (int j = 4;j > i;j--) {
+                for (int j = line - 1;j > i;j--) {
                     printf("*");
                 }
                 printf("*\n");
@@ -28,8 +31,8 @@ void selectStar(int num) {
         }
         // 3번 가운데 삼각형
         else if (num == 3) {
-            for (int i = 0;i < 5;i++) {
-                for (int j = 4;j > i;j--) {
+            for (int i = 0;i < line;i++) {
+                for (int j = line - 1;j > i;j--) {
                    printf(" ");
                 }
                 for (int j = 0;j < i;j++) {
@@ -42,50 +45,22 @@ void selectStar(int num) {
             }
             break;
         }
-        // 4번 마름모
+        // 4번 모래시계
         else if (num == 4) {
-            for (int i = 0;i < 5;i++) {
-                for (int j = 4;j > i;j--) {
+            for (int i = 0;i < line;i++) {
+                for (int j = 0;j < i;j++) {
                     printf(" ");
                 }
-                for (int j = 0;j < i;j++) {
+                for (int j = line - 1;j > i;j--) {
                     printf("*");
                 }
-                for (int j = 0;j < i;j++) {
+                for (int j = line - 1;j > i;j--) {
                     printf("*");
                 }
                 printf("*\n");
             }
-            for (int i = 0;i < 4;i++) {
-                for (int j = 0;j <= i;j++) {
-                    printf(" ");
-                }
-                for (int j = 3;j > i;j--) {
-                    printf("*");
-                }
-                for (int j = 3;j > i;j--) {
-                    printf("*");
-                }
-                printf("*\n");
-            }
-            break;
-        }
-        // 5번 모래시계
-        else if (num == 5) {
-            for (int i = 0;i < 5;i++) {
-                for (int j = 0;j < i;j++) {
-                    printf(" ");
-                }
-                for (int j = 4;j > i;j--) {
-                    printf("*");
-                }
-                for (int j = 4;j > i;j--) {
-                    printf("*");
-                }
-                printf("*\n");
-            }
-            for (int i = 0;i < 4;i++) {
-                for (int j = 3;j > i;j--) {
+            for (int i = 0;i < line - 1;i++) {
+                for (int j = line - 2;j > i;j--) {
                     printf(" ");
                 }
                 for (int j = 0;j <= i;j++) {
@@ -98,22 +73,22 @@ void selectStar(int num) {
             }
             break;
         }
-        // 6번 바람개비
+        // 5번 바람개비
         else {
-            for (int i = 0;i < 5;i++) {
+            for (int i = 0;i < line;i++) {
                 for (int j = 0;j <= i;j++) {
                     printf("*");
                 }
-                for (int j = 4;j >= i;j--) {
+                for (int j = line - 1;j >= i;j--) {
                     printf(" ");
                 }
-                for (int j = 4;j > i;j--) {
+                for (int j = line - 1;j > i;j--) {
                     printf("*");
                 }
                 printf("*\n");
             }
-            for (int i = 0;i < 5;i++) {
-                for (int j = 4;j >= i;j--) {
+            for (int i = 0;i < line;i++) {
+                for (int j = line - 1;j >= i;j--) {
                     printf(" ");
                 }
                 for (int j = 0;j <= i;j++) {
@@ -122,7 +97,7 @@ void selectStar(int num) {
                 for (int j = 0;j <= i;j++) {
                     printf(" ");
                 }
-                for (int j = 4;j > i;j--) {
+                for (int j = line - 1;j > i;j--) {
                     printf("*");
                 }
                 printf("*\n");
@@ -133,11 +108,14 @@ void selectStar(int num) {
 }
 
 int main() {
-    int input;
-    printf("숫자 입력(1~6): ");
-    scanf("%d", &input);
+    int inputNum, line;
+    printf("숫자 입력(0~5): ");
+    scanf("%d", &inputNum);
 
-    selectStar(input);
+    printf("행의 개수: ");
+    scanf("%d", &line);
+
+    selectStar(inputNum, line);
 
     return 0;
 }
