@@ -6,7 +6,6 @@ void findPrimeNumber(int a) {
     for (int i = 2;i < a;i++) {
         if (a % i == 0) {
             count += 1;
-            printf("정수 %d: 소수 아님", a);
             break;
         }
     }
