@@ -15,7 +15,6 @@ void findPrimeNumber(int a) {
     else {
         printf("정수 %d: 소수 아님", a);
     }
-    
 }
 
 int main() {
