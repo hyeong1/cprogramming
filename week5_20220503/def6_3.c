@@ -1,16 +1,16 @@
 #include <stdio.h>
 
 void findPrimeNumber(int a) {
-    int count;
+    int count = 1;
 
     for (int i = 2;i < a;i++) {
         if (a % i == 0) {
-            count = 1;
+            count += 1;
             printf("정수 %d: 소수 아님", a);
             break;
         }
     }
-    if (count == 0) {
+    if (count == 1) {
         printf("정수 %d: 소수", a);
     }
     else {
