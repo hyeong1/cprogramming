@@ -12,7 +12,7 @@ int intCalculator(int select, int num1, int num2) {
         result = num1 - num2;
     }
     else if (select == 3) {
-        result = num1 / num2;
+        result = num1 / num2; // --> 나눗셈은 실수가 생길 수 있기 때문에 일단 실수로 결과 받고 -> int main()에서 결과 정수, 실수 판별해서 실수면 실수로 출력, 정수면 소수점 떼고 출력
     }
     else {
         result = num1 * num2;
