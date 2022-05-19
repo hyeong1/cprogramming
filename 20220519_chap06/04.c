@@ -8,7 +8,6 @@ int main() {
 
     int userNum, comNum;
     comNum = rand() % 3 + 1;
-    printf("컴퓨터 선택: %d\n", comNum);
     
     printf("선택하시오.(1:가위 2:바위 3:보)");
     scanf("%d", &userNum);
@@ -53,5 +52,7 @@ int main() {
         } 
     }
 
+    printf("컴퓨터 선택: %d\n", comNum);
+    
     return 0;
 }
