@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+// 사용자가 입력한 정수의 모든 약수 출력
+int main() {
+    int data;
+    printf("정수를 입력하시오: ");
+    scanf("%d", &data);
+
+    printf("약수: ");
+    for (int i = 1;i <= data;i++) {
+        if (data % i == 0) {
+            printf("%d ", i);
+        }
+    }
+
+    return 0;
+}
