@@ -4,16 +4,16 @@ int main() {
     double r, result = 1;
     int n;
 
-    printf("ì‹¤ìˆ˜ì˜ ê°’ì„ ì…ë ¥í•˜ì‹œì˜¤: ");
+    printf("½Ç¼öÀÇ °ªÀ» ÀÔ·ÂÇÏ½Ã¿À: ");
     scanf("%lf", &r);
-    printf("ê±°ë“­ì œê³±íšŸìˆ˜ë¥¼ ì…ë ¥í•˜ì‹œì˜¤: ");
+    printf("°ÅµìÁ¦°öÈ½¼ö¸¦ ÀÔ·ÂÇÏ½Ã¿À: ");
     scanf("%d", &n);
 
-    for (int i = 1;i <= r;i++) {
-        result = r * r;
+    for (int i = 1;i <= n;i++) {
+        result = result * r;
     }    
 
-    printf("%d", result);
+    printf("°á°ú°ªÀº %lf", result);
 
     return 0;
 }
