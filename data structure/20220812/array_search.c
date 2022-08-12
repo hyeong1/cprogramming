@@ -8,6 +8,8 @@
 
 // 배열 요소 출력하는 함수
 void printArray(int *array, int count);
+// 배열 요소 검색하는 함수
+void searchData(int *array, int count, int num);
 
 int main() {
     int num[10]; //0~9크기의 배열
@@ -20,21 +22,8 @@ int main() {
 
     printArray(num, count);
 
-    // 배열 내용 검색 -5회 반복
-    int search; // 검색할 정수를 저정하는 변수 선언
-    for (int i = 0;i < 5;i++) {
-        printf("검색할 정수를 입력하시오: ");
-        scanf("%d", &search);
-    
-        for (int i = 0;i < count;i++) {
-            if (search == num[i]) {
-                printf("%d은(는) %d번 방에 있습니다.\n", search, i);
-                break;
-            }
-            else if (i == 9)
-                printf("%d은(는) 존재하지 않습니다.\n", search);
-        }
-    }
+    // 배열 내용 검색 
+    searchData(num, count, 5);
     
     return 0;
 }
@@ -46,4 +35,21 @@ void printArray(int *array, int count) {
     for (int i = 0;i < 10;i++)
         printf("%d\t", array[i]);
     printf("\n");
+}
+// 배열 요소 검색하는 함수
+void searchData(int *array, int count, int num) {
+    int search;
+    for (int i = 0;i < num;i++) {
+        printf("검색할 정수를 입력하시오: ");
+        scanf("%d", &search);
+
+        for (int i = 0;i < count;i++) {
+            if (search == array[i]) {
+                printf("%d은(는) %d번 방에 있습니다.\n", search, i);
+                break;
+            }
+            else if (i == 9)
+                printf("%d은(는) 존재하지 않습니다.\n", search);
+        }
+    }
 }
