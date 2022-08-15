@@ -5,21 +5,27 @@
 #include <string.h>
 
 void inputData(char *ap); 
-void checkStr(char *ap);
+int checkStr(char *ap);
 
 int main() {
     char inputStr[100];
-    inputData(inputStr);
-    
+    int result; // 회문 검사결과를 저장하는 변수
+
     // 회문검사 반복문
     while (1) {
+        inputData(inputStr);
+
         // 입력받은 문자열이 'end'인지 검사
         char checkEnd = strcmp(inputStr, "end");
-        if (!checkEnd)
+        if (!checkEnd) // checkEnd == 0
             break;
-        else
-            checkStr(inputStr);
-            break;
+        else {
+            result = checkStr(inputStr);
+            if (!result) //result값이 0이면 회문 맞음
+                printf("회문 맞음\n");
+            else  // result 값이 0이 아니면 회문 아님
+                printf("회문 아님\n");
+        }    
     }
 
     return 0;
@@ -27,34 +33,27 @@ int main() {
 
 // 입력함수
 void inputData(char *ap) {
-    char str[100];
     printf("단어 입력: ");
-    scanf("%s", str);
-    
+    scanf("%s", ap);
+    /*
     // 입력한 문자열 길이 구하기
     int n = strlen(str);
     
     // 입력한 문자열을 inputStr 문자열에 넣기
     for (int i = 0;i <= n;i++)
         ap[i] = str[i];
+    */
+   return;
 }
 // 회문검사함수
-void checkStr(char *ap) {
-    // inputStr의 총 길이를 저장하는 변수
-    int len = strlen(ap);
-    // 회문 아니면 +1
-    int check = 0;
+int checkStr(char *ap) {
+    int len = strlen(ap); // inputStr의 총 길이를 저장하는 변수
+    int check = 0; // 회문 아니면 +1
     for (int i = 0;i <= len / 2;i++) {
-        if (ap[i] == ap[len-1]) {
-            len -= 1;
-        }
-        else {
-            printf("회문 아님\n");
+        if (ap[i] != ap[len-1-i]) {
             check += 1;
             break;
-        }
+        } 
     }
-    // 반복문을 다 돌았으면 회문. check == 0이면 '회문 맞음' 출력
-    if (!check)
-        printf("회문 맞음\n");
+    return check;
 }
