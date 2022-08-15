@@ -8,15 +8,16 @@
 
 // 배열 요소 출력하는 함수
 void printArray(int *array, int count);
-// 배열 요소 검색하는 함수
+// 배열 요소 검색하는 함수 (배열, 배열크기, 반복 횟수)
 void searchData(int *array, int count, int num);
 
 int main() {
     int num[10]; //0~9크기의 배열
     int count = 10; // 배열 크기를 저장하는 변수
-    srand(time(NULL));
+    // int size = sizeof(num)/sizeof(num[0]);
 
     // num배열 안에 난수 넣기
+    srand(time(NULL));
     for (int i = 0;i < 10;i++)
         num[i] = rand() % 20 + 1;
 
