@@ -7,7 +7,6 @@
 #include <time.h>
 void inputArray(int (*p)[4], int row);
 void outputArray(int (*p)[4], int row);
-void outputColSum(int (*p)[4], int row);
 
 int main() {
     int num[3][4];
@@ -17,7 +16,6 @@ int main() {
     inputArray(num, row);
 
     outputArray(num, row);
-    outputColSum(num, row);
 
     return 0;
 }
@@ -42,9 +40,6 @@ void outputArray(int (*p)[4], int row) {
         printf("  %d행의 합: %d", i, rowSum);
         printf("\n");
     }
-}
-
-void outputColSum(int (*p)[4], int row) {
     printf("열의 합: ");
     for (int j = 0;j < 4;j++) {
         int colSum = 0; // 각 열의 합 저장할 변수 언언
@@ -52,5 +47,5 @@ void outputColSum(int (*p)[4], int row) {
             colSum += p[i][j];
         }
         printf("%d ", colSum);
-    } 
+    }
 }
