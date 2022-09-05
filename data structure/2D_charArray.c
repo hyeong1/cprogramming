@@ -1,11 +1,34 @@
-// 2ì°¨ì›ë°°ì—´-ê° ë¬¸ìì—´ì˜ ì²« ë¬¸ìì™€ ë§ˆì§€ë§‰ ë¬¸ì ì¶œë ¥í•˜ê¸°
+// 2Â÷¿ø¹è¿­-°¢ ¹®ÀÚ¿­ÀÇ Ã¹ ¹®ÀÚ¿Í ¸¶Áö¸· ¹®ÀÚ Ãâ·ÂÇÏ±â
 #include <stdio.h>
 #include <string.h>
 
-void inputArray();
-void printArray();
+void inputArray(char (*p)[80], int row);
+void printArray(char (*p)[80], int row);
 
 int main() {
+    char str[5][80];
+    int row; // Çà °³¼ö¸¦ ÀúÀåÇÏ´Â º¯¼ö
+    row = sizeof(str)/sizeof(str[0]);
+
+    inputArray(str, row);
+    printArray(str, row);
 
     return 0;
+}
+
+// ¹®ÀÚ¿­ ÀÔ·Â ÇÔ¼ö
+void inputArray(char (*p)[80], int row) {
+    for (int i = 0;i < row;i++) {
+            printf("¹®ÀÚ ÀÔ·Â: ");
+            scanf("%s", &p[i]);
+    }
+}
+
+// ¹®ÀÚ¿­ÀÇ Ã¹ ¹®ÀÚ¿Í ¸¶Áö¸· ¹®ÀÚ Ãâ·Â ÇÔ¼ö
+void printArray(char (*p)[80], int row) {
+    for (int i = 0;i < row;i++) {
+        int n = strlen(p[i]);
+        printf("str[%d] = %s ", i, p[i]);
+        printf("%c %c\n", p[i][0], p[i][n-1]);
+    }
 }
