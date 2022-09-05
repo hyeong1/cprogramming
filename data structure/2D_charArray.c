@@ -28,7 +28,7 @@ void inputArray(char (*p)[80], int row) {
 void printArray(char (*p)[80], int row) {
     for (int i = 0;i < row;i++) {
         int n = strlen(p[i]);
-        printf("str[%d] = %s ", i, p[i]);
-        printf("%c %c\n", p[i][0], p[i][n-1]);
+        printf("str[%d] = %s ", i, p[i]);      // 문자열은 %s
+        printf("%c %c\n", p[i][0], p[i][n-1]); // 문자는 %c
     }
 }
