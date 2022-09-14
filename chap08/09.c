@@ -8,11 +8,8 @@ int b_rand();
 int main()
 {
     srand(time(NULL));
-    printf("%d ", b_rand()); 
-    printf("%d ", b_rand()); 
-    printf("%d ", b_rand()); 
-    printf("%d ", b_rand()); 
-    printf("%d ", b_rand()); 
+    for (int i = 0;i < 5;i++)
+        printf("%d ", b_rand()); 
 
     return 0;
 }
