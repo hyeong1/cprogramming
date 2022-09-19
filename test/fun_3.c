@@ -19,13 +19,16 @@ int main()
 
 int findBEP(int A, int B, int C)
 {
+    /*
     int cost, income, sell; // 총 비용, 총 수입, 판매 개수 변수 선언
-    sell = 0;
+    */
+    int sell = 0;
 
     if (B >= C) // 손익분기점이 존재하지 않으면 -1 출력
         return -1;
     else
     {
+        /*
         do
         {
             cost = A + (B * sell);
@@ -33,7 +36,10 @@ int findBEP(int A, int B, int C)
             
             sell++; // sell 하나씩 늘리면서 cost, income 계산
         } while (cost > income); // cost < income을 만족하면 반복문 종료하고 sell값 리턴
-    }
+        */
 
-    return sell;
+        int profit = C - B;  // 이득 = 판매비용 - 가변비용 (노트북 한 대 가격 - 한 대 만드는 데에 드는 가격)
+            sell = (A / profit) + 1; // 총 고정비용 / 이득 -> 손익분기점 넘기 직전 판매개수  // 판매개수가 고정비용/이득 보다 크면 손익분기점 --> 고정비용/이득에 +1 
+            return sell; 
+    }
 }
