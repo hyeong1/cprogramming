@@ -10,14 +10,14 @@ int main()
     printf("조리 시간: ");
     scanf("%d", &cookTime);
 
-    startMin += cookTime;
+    startMin += cookTime; 
 
     if (startMin >= 60) // 종료 분이 60분이 넘을 때
     {
-        startHour++;
-        startMin -= 60;
-        if (startHour == 24)
-            startHour = 0;
+        startHour += startMin / 60;
+        startMin = startMin % 60;
+        if (startHour >= 24)
+            startHour = startHour % 24;
         printf("%d %d", startHour, startMin);
     }
     else // 종료 분이 60분이 넘지 않으면 바로 출력
