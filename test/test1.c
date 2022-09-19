@@ -1,61 +1,97 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
-void insertHead(int *ap, int size);
-void insertBottom(int *ap, int size);
+void insertHead(int* ap, int size);
+void insertBottom(int* ap, int size);
 
 int main()
 {
-    
     int input, size;
-    int head[100];
-    int bottom[100];
-   
+    int head[10000];
+    int bottom[10000];
+
     size = 100;
 
-    printf("¹øÈ£ ÀÔ·Â: ");
+    printf("ë²ˆí˜¸ ìž…ë ¥: ");
     scanf("%d", &input);
- 
+
     insertHead(head, size);
     insertBottom(bottom, size);
 
-    printf("%d/%d\n", head[input-1], bottom[input-1]);
-      
-    
-    //1, 1, 2, 3, 2, 1, 1, 2, 3, 4, 5, 4, 3, 2, 1 Ãâ·Â
-   
-    //1, 2, 1, 1, 2, 3, 4, 3, 2, 1, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1 Ãâ·Â
-    
+    printf("%d/%d\n", head[input - 1], bottom[input - 1]);
+    /*
+    int place = 0;
+    int ap[100];
+    for (int i = 1; i <= 5; i += 2)
+    {
+        for (int j = 1; j < i; j++)
+        {
+            ap[place] = j;
+            printf("%dë²ˆë°©: %d\n", place, j);
+            place++;
+        }
+        for (int j = i; j >= 1; j--)
+        {
+            ap[place] = j;
+            printf("%dë²ˆë°©: %d\n", place, j);
+            place++;
+            
+        }
+    }*/
+    /*
+    //1, 1, 2, 3, 2, 1, 1, 2, 3, 4, 5, 4, 3, 2, 1 ì¶œë ¥
+    for (int i = 1; i <= 5;i += 2)
+    {
+        for (int j = 1;j < i;j++)
+            printf("%d ", j);
+        for (int j = i;j >= 1;j--)
+            printf("%d ", j);
+    }
+    printf("\n");
+    //1, 2, 1, 1, 2, 3, 4, 3, 2, 1, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1 ì¶œë ¥
+    for (int i = 2; i <= 6; i += 2)
+    {
+        for (int j = 1; j < i; j++)
+            printf("%d ", j);
+        for (int j = i; j >= 1; j--)
+            printf("%d ", j);
+    }*/
+
     return 0;
 }
 
-void insertHead(int *ap, int size)
+void insertHead(int* ap, int size)
 {
-    int insideN, placeN; 
-    insideN = 1;  // ¹è¿­¿¡ µé¾î°¡´Â º¯¼ö
-    placeN = 0;   // ¹è¿­ÀÇ ÁÖ¼Ò º¯¼ö
-    for (int i = 0;i < 10;i++)
+    int place = 0; // ë°°ì—´ ì£¼ì†Œ ë³€ìˆ˜
+    for (int i = 1; i <= size; i += 2)
     {
-        for (int j = 1;j <= insideN;j++)
+        for (int j = 1; j < i; j++)
         {
-            ap[placeN] = j;
-            placeN++;
-        } 
-        insideN++;
+            ap[place] = j; // ë°°ì—´ ì•ˆì— ë“¤ì–´ê°€ëŠ” ìˆ˜ëŠ” j
+            place++;
+        }
+        for (int j = i; j >= 1; j--)
+        {
+            ap[place] = j;
+            place++;
+        }
     }
 }
 
-void insertBottom(int *ap, int size)
+void insertBottom(int* ap, int size)
 {
-    int insideN, placeN;
-    insideN = 1;  // ¹è¿­¿¡ µé¾î°¡´Â º¯¼ö
-    placeN = 0;   // ¹è¿­ÀÇ ÁÖ¼Ò º¯¼ö
-    for (int i = 0;i < 10;i++)
+    int place = 0;   // ë°°ì—´ ì£¼ì†Œ ë³€ìˆ˜
+    for (int i = 2; i <= size; i += 2)
     {
-        for (int j = insideN;j >= 1;j--)
+        for (int j = 1; j < i; j++)
         {
-            ap[placeN] = j;
-            placeN++;
-        } 
-        insideN++;
+            ap[place] = j;
+            place++;
+        }
+        for (int j = i; j >= 1; j--)
+        {
+            ap[place] = j;
+            place++;
+        }
     }
 }
