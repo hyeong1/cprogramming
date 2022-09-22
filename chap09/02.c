@@ -6,47 +6,41 @@
 #include <stdlib.h>
 #include <time.h>
 
-void GetDiceFace();
+void GetDiceFace(int count);
 
 int main()
 {
     srand(time(NULL));
-    GetDiceFace();
+    for (int i = 1;i <= 100;i++)
+        GetDiceFace(i);
     return 0;
 }
 
-void GetDiceFace()
+void GetDiceFace(int count)
 {
-    static int count = 0;
-    static int count1 = 0;
-    static int count2 = 0;
-    static int count3 = 0;
-    static int count4 = 0;
-    static int count5 = 0;
-    static int count6 = 0;
+    static int count1, count2, count3, count4, count5, count6;
     
-    do
-    {
-        count++;
-        int dice = rand() % 6 + 1;
-        if (dice == 1)
-            count1++;
-        else if (dice == 2)
-            count2++;
-        else if (dice == 3)
-            count3++;
-        else if (dice == 4)
-            count4++;
-        else if (dice == 5)
-            count5++;
-        else
-            count6++;
+    int dice = rand() % 6 + 1;
+    if (dice == 1)
+        count1++;
+    else if (dice == 2)
+        count2++;
+    else if (dice == 3)
+        count3++;
+    else if (dice == 4)
+        count4++;
+    else if (dice == 5)
+        count5++;
+    else
+        count6++;
 
-    } while (count != 100);
+    if (count == 100)
+    {
     printf("1->%d\n", count1);
     printf("2->%d\n", count2);
     printf("3->%d\n", count3);
     printf("4->%d\n", count4);
     printf("5->%d\n", count5);
-    printf("6->%d\n", count6);    
+    printf("6->%d\n", count6); 
+    }   
 }
