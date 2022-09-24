@@ -1,4 +1,4 @@
-// 순환기법을 이용하여 지수값을 계싼하는 함수 power(int base, int power_raised) 작성하고 테스트
+// 순환기법을 이용하여 지수값을 계산하는 함수 power(int base, int power_raised) 작성하고 테스트
 // power(2, 3)가 호출되면 2^3을 계산하여 반환
 #include <stdio.h>
 
