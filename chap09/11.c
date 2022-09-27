@@ -6,7 +6,13 @@ int Combination(int n, int k);
 
 int main()
 {
-    printf("%d\n", Combination(4, 2));
+    int n, k;
+    printf("n: ");
+    scanf("%d", &n);
+    printf("k: ");
+    scanf("%d", &k);
+
+    printf("%d\n", Combination(n, k));
     return 0;
 }
 
