@@ -5,37 +5,42 @@
 // 2. 소수 구하기
 // (1 && 2)를 만족하는 수 중에서 가장 작은 수 찾기
 #include <stdio.h>
+#include <string.h>
 
 // 입력한 수의 팰린드롬 수 출력하기
 int Palindrome(int n);
 // 입력한 수보다 크거나 같은 소수 중에서 가장 작은 수 찾기
 void Prime(int n);
 // 소수이면서 팰린드롬인 수 중에서 가장 작은 수 찾기
-// 1. 소수의 팰린드롬수를 구하기
-// 2. 팰린드롬수가 소수가 아니면 다음 소수로 넘어가기
-// 3. 1,2 반복하다가 둘 다 처음으로 만족하는 수가 가장 작은 수이므로 해당 숫자 출력
+// 1. n보다 크거나 같은 수 중에서 팰린드롬 수 찾기
+// 2. 찾은 팰린드롬 수가 소수인지 판별
 
 int main()
 {
     int input, palindrome;
     scanf("%d", &input);
 
-    //Palindrome(input);
-    Prime(input);
+    Prime(Palindrome(input));
 
     return 0;
 }
 
 int Palindrome(int n)
 {
-    // 팰린드롬 수 찾는 함수 다시 짜기
-    if (n < 10)
-        printf("%d", n);
-    else
+    // n 보다 크거나 같은 수 중에서 가장 작은 팰린드롬 수 찾기
+    // 정수인 n을 문자열로 변환
+    char number[10];
+    sprintf(number, "%d", n);
+    int last = strlen(number); // 문자열 길이 저장
+
+    for (int i = 0;i <= (last / 2);i++)
     {
-        printf("%d", n % 10);
-        Palindrome(n / 10);
+        if (number[i] == number[last-1-i]) // 문자열 0번, 끝번 비교.... 해서 반복분 다 돌면 팰린드롬 수이므로 해당 n 리턴
+            return n;
+        else // 아니면 n증가
+            n++;
     }
+
 }
 
 void Prime(int n)
