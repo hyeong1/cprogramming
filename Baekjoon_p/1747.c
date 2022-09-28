@@ -50,12 +50,22 @@ int Palindrome(int n)
 
 int Prime(int n)
 {
-    int i;
+    int check = 0;
 
-    for (i = 2;i < n;i++)
+    if (n == 2) // 2가 입력되면 2는 소수이므로
+        return 1; // 바로 1 리턴
+
+    for (int i = 2;i < n;i++)
     {
-        if (n % i == 0) 
-            return 0;  
+        if (n % i == 0) // 2~자기자신 전에 약수가 있으면
+        { 
+            check = 0; // 소수 체크할 변수를 0으로 하고
+            break; // 반복문 나가기
+        }
+        else
+            check++;
     }
+    if (check == 0) // 소수 체크할 변수가 0이면
+        return 0; // 0 리턴
     return 1;
 }
