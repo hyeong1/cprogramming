@@ -10,58 +10,52 @@
 // 입력한 수의 팰린드롬 수 출력하기
 int Palindrome(int n);
 // 입력한 수보다 크거나 같은 소수 중에서 가장 작은 수 찾기
-void Prime(int n);
+int Prime(int n);
 // 소수이면서 팰린드롬인 수 중에서 가장 작은 수 찾기
 // 1. n보다 크거나 같은 수 중에서 팰린드롬 수 찾기
 // 2. 찾은 팰린드롬 수가 소수인지 판별
 
 int main()
 {
-    int input, palindrome;
+    int input;
     scanf("%d", &input);
 
-    Prime(Palindrome(input));
-
+    while (1)
+    {
+        if (Palindrome(input) == 1 && Prime(input) == 1)
+        {
+            printf("%d\n", input);
+            break;
+        }
+        else 
+            input++;
+    }
     return 0;
 }
 
 int Palindrome(int n)
 {
     // n 보다 크거나 같은 수 중에서 가장 작은 팰린드롬 수 찾기
-    // 정수인 n을 문자열로 변환
     char number[10];
-    sprintf(number, "%d", n);
+    sprintf(number, "%d", n); // 정수인 n을 문자열로 변환
     int last = strlen(number); // 문자열 길이 저장
-
-    for (int i = 0;i <= (last / 2);i++)
+    
+    for (int i = 0;i < last/2;i++)
     {
-        if (number[i] == number[last-1-i]) // 문자열 0번, 끝번 비교.... 해서 반복분 다 돌면 팰린드롬 수이므로 해당 n 리턴
-            return n;
-        else // 아니면 n증가
-            n++;
+        if (number[i] != number[last-1-i])
+            return 0;
     }
-
+    return 1;
 }
 
-void Prime(int n)
+int Prime(int n)
 {
     int i;
 
-    while (1)
+    for (i = 2;i < n;i++)
     {
-        for (i = 2;i < n;i++)
-        {
-            if (n % i == 0) // 2 와 n-1 사이에 약수가 있으면 소수 아님 -> n을 하나 증가시키고 중첩반복문을 나감
-            {
-                n++;
-                break;
-            }
-        }
-
-        if (n == i) // 소수 직전 숫자가 n을 하나 증가시키고 중첩반복문 종료 -> 중첩반복문을 전부 돈 n이 입력받은 input보다 크면서 소수이면서 가장 작은 수
-        {
-            printf("%d\n", n);
-            break;
-        }
+        if (n % i == 0) 
+            return 0;  
     }
+    return 1;
 }
