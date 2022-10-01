@@ -8,7 +8,7 @@ int main()
     char inputId[50];
 
     // 문자열 입력 받기
-    scanf("%[^\n]s", inputId);
+    scanf("%[^\n]s", inputId); // 공백까지 표함해서 문자열 받기
     printf("%s?\?!\n", inputId);
     
     return 0;
