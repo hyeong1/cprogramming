@@ -10,12 +10,12 @@ int RandArr(int (*rand)[4]); // 학생들의 성적을 난수로 얻을 경우
 
 int main()
 {
-    int score[5][4] = {{1, 30 ,10 ,11},
+    int score[10][4] = {{1, 30 ,10 ,11},
                        {2, 40, 50, 32}, 
                        {3, 70, 65, 56},
                        {4, 70, 43, 32},
                        {5, 80, 10, 89}};
-    int randScore[5][4];
+    int randScore[10][4];
 
     srand(time(NULL));
     RandArr(randScore);
@@ -40,7 +40,7 @@ int main()
 int FindMax(int (*score)[4], int column)
 {
     int max = score[0][column];
-    for (int i = 0;i < 5;i++)
+    for (int i = 0;i < 10;i++)
     {
         if (max < score[i][column])
             max = score[i][column];
@@ -51,17 +51,21 @@ int FindMax(int (*score)[4], int column)
 int FindMin(int (*score)[4], int column)
 {
     int min = score[0][column];
-    for (int i = 0;i < 5;i++)
+    for (int i = 0;i < 10;i++)
     {
         if (min > score[i][column])
+        {
+            if (score[i][column] == 0)
+                continue;
             min = score[i][column];
+        }
     }
     return min;
 }
 
 int RandArr(int (*randArr)[4])
 {
-    for (int i = 0;i < 5;i++)
+    for (int i = 0;i < 10;i++)
     {
         for (int j = 0;j < 4;j++)
             randArr[i][j] = rand() % 101;
