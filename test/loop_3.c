@@ -7,6 +7,7 @@
 
 int main()
 {
+    // 방법 1
     int N, n,sumN, newN, cycle; // 초기 값은 N에 저장, 연산할 변수는 n
     sumN = 0;  // 각 자리 숫자 더한 값 저장 변수
     newN = 0;  // 새로운 수 저장 변수
@@ -36,9 +37,27 @@ int main()
         }
         n = newN;
     } while(newN != N);
-    
-
     printf("%d\n", cycle);
+
+    // 방법 2
+    int n, addN, newN, cycle;
+    scanf("%d", &n);
+    if (n < 10) // n이 10보다 작으면
+        addN = n; // 더한 수는 n
+    else
+        addN = (n / 10) + (n % 10);
+    newN = (n % 10) * 10 + (addN % 10); // 새로운 수는 n과 더한 수의 가장 오른쪽 수
+    cycle = 1; // 위에서 사이클 한 번 진행했으므로 cycle은 1부터 시작
+    while (n != newN)
+    {
+        if (newN < 10) 
+            addN = newN; 
+        else
+            addN = (newN / 10) + (newN % 10);
+        newN = (newN % 10) * 10 + (addN % 10);
+        cycle++;
+    }
+    printf("%d", cycle);
 
     return 0;
 }
