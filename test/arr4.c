@@ -4,29 +4,48 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void InputScore(double *arr, int n);
+int MaxScore(double *arr, int n);
+void ChangeScore(double *arr, int n, int max);
+
 int main()
 {
-    int N, M;
+    int N;
+    double M;
     double sum = 0; // 모든 과목 점수 합 변수
     scanf("%d", &N);
     double* score = (double*)malloc(sizeof(double) * N);
     
-    for (int i = 0;i < N;i++) // 점수 입력
-        scanf("%lf", &score[i]);
-
-    M = score[0];
-    for (int i = 1;i < N;i++) // 최대 점수 찾기
-    {
-        if (M < score[i])
-            M = score[i];
-    }
-
-    for (int i = 0;i < N;i++) // 점수 새로 계산하기
-        score[i] = score[i] / M * 100;
+    InputScore(score, N); // 점수 입력
+    M = MaxScore(score, N); // 최댓값 찾기
+    ChangeScore(score, N, M); // 점수 새로 계산하기
 
     for (int i = 0;i < N;i++) // 새로운 점수에 대한 점수 합 계산
         sum += score[i];
     printf("%lf", sum / N); // 새로운 점수 평균 출력
 
     return 0;
+}
+
+void InputScore(double *arr, int n)
+{
+    for (int i = 0;i < n;i++) // 점수 입력
+        scanf("%lf", &arr[i]);
+}
+
+int MaxScore(double *arr, int n)
+{
+    double max = arr[0];
+    for (int i = 1;i < n;i++) // 최대 점수 찾기
+    {
+        if (max < arr[i])
+            max = arr[i];
+    }
+    return max;
+}
+
+void ChangeScore(double *arr, int n, int max)
+{
+    for (int i = 0;i < n;i++) // 점수 새로 계산하기
+        arr[i] = arr[i] / max * 100;
 }
