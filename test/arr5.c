@@ -47,7 +47,7 @@ double Avg(double *arr, int n)
     double avg = 0;
     for (int i = 0;i < n;i++)
             avg += arr[i];
-    return (avg = avg / n);
+    return (avg / n);
 }
 
 int StudentCount(double *arr, int n , double avg) // 전체 학생 수와 평균을 받아서 count 계산
