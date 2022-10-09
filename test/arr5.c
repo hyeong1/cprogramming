@@ -11,9 +11,8 @@ double AvgRate(int n, int count); // 평균 넘는 학생들의 비율을 구하는 함수
 
 int main()
 {
-    int c, n, count; // 테스트 케이스 개수, 학생 수, 평균 넘는 학생 체크 변수
-    double *score; // 점수는 0보다 크거나 같고, 100보다 작거나 같은 정수
-    double avg; // 평균 변수, 평균을 넘는 학생들의 비율 변수
+    int c, n; // 테스트 케이스 개수, 학생 수, 평균 넘는 학생 체크 변수
+    double *score, avg; // 점수 배열, 평균 변수 선언
     scanf("%d\n", &c); // 테스트 케이스 개수 입력
 
     for (int i = 0;i < c;i++) // 각 케이스를 c번 반복
@@ -24,13 +23,10 @@ int main()
         InputScore(score, n); // 점수 입력
 
         // 케이스 마다 평균을 넘는 학생 수 비율 출력
-        avg = Avg(score, n); // 평균 구하기
+        avg = Avg(score, n); // 1. 평균 구하기
 
-        // 평균을 넘는 학생들의 비율을 반올림하여 소수점 셋째 자리까지 출력
-        count = StudentCount(score, n, avg); // 평균 넘는 학생 수 구하기
-
-        // 비율 구하기
-        printf("%.3lf%%\n", AvgRate(n, count)); // 비율 반올림하여 소수점 셋째 자리까지 출력
+        // 2. 비율 구해서 소수점 셋째 자리까리 출력하기
+        printf("%.3lf%%\n", AvgRate(n, StudentCount(score, n, avg))); 
     }   
      
     return 0;
