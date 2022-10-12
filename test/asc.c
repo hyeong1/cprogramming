@@ -43,6 +43,8 @@ int main()
         if (check == 1)
             printf("descending");
     }
+    else
+        printf("mixed");
 
     return 0;
 }
