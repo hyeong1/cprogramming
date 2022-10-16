@@ -2,6 +2,11 @@
 
 int main()
 {
-    printf("%d\n", EOF);
+    int a = 1, b = 1;
+    while (scanf("%d %d", &a, &b) != EOF)
+    {
+        printf("%d\n", a + b);
+    }
+
     return 0;
 }
