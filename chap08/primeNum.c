@@ -21,10 +21,26 @@ void FindPrimeNum(int num)
         printf("소수 맞음\n");
 }
 
+int IsPrime(int n)
+{
+    if (n == 1)   // 1은 소수가 아니므로 n이 1이면
+        return 0; // 0 리턴
+    for (int i = 2; i < n; i++)
+    {
+        if (n % i == 0) // 2부터 자기자신-1 사이에 하나라도 약수가 생기면
+            return 0;
+    }
+    return 1;
+}
+
 int main()
 {
     int num;
     scanf("%d", &num); // 사용자에게 숫자 입력받기
-    FindPrimeNum(num);
+    // FindPrimeNum(num);
+    if (!IsPrime(num)) // return 0이면
+        printf("소수x\n");
+    else
+        printf("소수o\n");
     return 0;
 }
