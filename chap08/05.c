@@ -1,6 +1,6 @@
 // 반올림 연산을 수행하는 함수를 작성하고 테스트하라
 #include <stdio.h>
-
+/*
 double round(double f);
 
 int main()
@@ -23,4 +23,15 @@ double round(double f)
 {
     int doubleToInt = (int)(f + 0.5);
     return doubleToInt;
+}*/
+int round(double f)
+{
+    return (int)(f + 0.5);
+}
+int main()
+{
+    double num;
+    scanf("%lf", &num);
+    printf("반올림한 값은 %d입니다.\n", round(num));
+    return 0;
 }

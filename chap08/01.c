@@ -1,6 +1,6 @@
 // 정수 입력받아서 제곱하여 변환하는 함수 프로그램
 #include <stdio.h>
-
+/*
 double square(double num);
 
 int main()
@@ -20,4 +20,16 @@ double square(double num)
     double result = num * num;
 
     return result;
+}*/
+double square(double num)
+{
+    return num*num;
+}
+
+int main()
+{
+    double num;
+    scanf("%lf", &num);
+    printf("입력한 정수 %lf의 제곱은 %lf\n", num, square(num));
+    return 0;
 }
