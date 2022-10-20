@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
+/*
 int b_rand();
 
 int main()
@@ -17,4 +17,16 @@ int main()
 int b_rand()
 {
     return rand() % 2;
+}*/
+
+void b_rand()
+{
+    printf("%d ", rand() % 2);
+}
+
+int main()
+{
+    for (int i = 0;i < 5;i++)
+        b_rand();
+    return 0;
 }
