@@ -7,7 +7,6 @@ int main()
 {
     int dice[10] = {0};
     int maxN = 0; // 가장 많이 생성된 수의 방 번지 저장 변수
-    int max = dice[0]; // 빈도수 최대값 저장 변수
 
     srand(time(NULL));
     for (int i = 0;i < 100;i++)
@@ -15,11 +14,8 @@ int main()
 
     for (int i = 1;i < 10;i++)
     {
-        if (max < dice[i])
-        {
-            max = dice[i];
+        if (dice[maxN] < dice[i])
             maxN = i;
-        }
     }
 
     for (int i = 0;i < 10;i++)
