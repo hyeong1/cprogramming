@@ -14,11 +14,22 @@ int main()
 
     return 0;
 }
-
+/*
 int DigitSum(int n)
 {
     if (n < 10)
         return n;
-    else 
+    else
         return ((n % 10) + DigitSum(n / 10));
+}*/
+
+int DigitSum(int n)
+{
+    static int sum = 0; // 각 자리수를 더할 변수는 정적 지역 변수로 선언
+    if (n > 0)
+    {
+        DigitSum(n / 10);
+        sum += n % 10;
+    }
+    return sum;
 }

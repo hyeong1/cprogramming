@@ -13,7 +13,7 @@ int main()
     printf("ÀÚ¸®¼ö: %d\n", FindDigit(num));
     return 0;
 }
-
+/*
 int FindDigit(int num)
 {
     static int digit = 0;
@@ -22,4 +22,15 @@ int FindDigit(int num)
         FindDigit(num / 10);
     else
         return digit;
+}*/
+
+int FindDigit(int num)
+{
+    static int check = 0;
+    if (num > 0)
+    {
+        FindDigit(num / 10);
+        check++;
+    }
+    return check;
 }
