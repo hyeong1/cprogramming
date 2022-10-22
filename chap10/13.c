@@ -7,23 +7,23 @@ int DecToBin(int binary[], int dec); // 10진수를 2진수로 바꿔주는 함수
 
 int main()
 {
-    int binary[32];
+    int binary[32]; // 최대 32자리까지 변환이 가능
     int decimal, size;
     scanf("%d", &decimal);
-    size = DecToBin(binary, decimal) - 1;
+    size = DecToBin(binary, decimal);
 
     printf("%d -> ", decimal);
-    for (int i = size;i >= 0;i--)
-       printf("%d", binary[i]);
+    for (int i = size - 1; i >= 0; i--)
+        printf("%d", binary[i]);
     printf("\n");
-    
+
     return 0;
 }
 
 int DecToBin(int binary[], int dec)
 {
     int i;
-    for (i = 0;i < 32 && dec > 0;i++)
+    for (i = 0; i < 32 && dec > 0; i++)
     {
         binary[i] = dec % 2;
         dec = dec / 2;
