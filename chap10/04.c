@@ -5,11 +5,9 @@ void ArrayCopy(int a[], int b[], int size);
 
 int main()
 {
-    int a[10], b[10];
+    int a[10], b[10] = {0};
     for (int i = 0;i < 10;i++)
         scanf("%d", &a[i]);
-    for (int i = 0;i < 10;i++)
-        scanf("%d", &b[i]);
         
     printf("º¹»ç Àü\n");
     for (int i =0;i < 10;i++)
