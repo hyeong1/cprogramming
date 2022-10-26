@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 void is_leap(int year);
+int IsLeap(int year);
 /*
 int main()
 {
@@ -33,19 +34,17 @@ int main()
 {
     int year;
     scanf("%d", &year);
-    is_leap(year);
+    if (IsLeap(year))
+        printf("%d년은 366일입니다.\n", year);
+    else
+        printf("%d년은 365일입니다.\n", year);
     return 0;
 }
 
-void is_leap(int year)
+int IsLeap(int year)
 {
-    if (year % 4 == 0)
-    {
-        if (year % 100 != 0 || year % 400 == 0)
-            printf("%d년은 366일입니다.\n", year);
-        else
-            printf("%d년은 365일입니다.\n", year);
-    }
-    else
-        printf("%d년은 365일입니다.\n", year);
+    if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
+        return 1;
+    else 
+        return 0;
 }
