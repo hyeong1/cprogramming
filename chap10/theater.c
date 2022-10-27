@@ -20,13 +20,13 @@ int main()
 void PrintSeat(int seat[][10], int rowSize, int colSize) // 좌석 출력 함수
 {
     // 2차원 좌석 출력하기
-    for (int i = 1; i <= 100; i++)
+    for (int i = 1; i <= 100; i++) // 좌석번호 출력
     {
         printf("%d\t", i);
         if (i % 10 == 0)  // i가 10의 배수일 때마다
             printf("\n"); // 줄바꿈
     }
-    for (int i = 0; i < rowSize; i++)
+    for (int i = 0; i < rowSize; i++) // 좌석 예약 여부 출력
     {
         for (int j = 0; j < colSize; j++)
             printf("%d\t", seat[i][j]);
@@ -37,7 +37,7 @@ void PrintSeat(int seat[][10], int rowSize, int colSize) // 좌석 출력 함수
 void ReserveSeat(int seat[][10]) // 예매하는 과정
 {
     char ans1;
-    int member, seatNum;
+    int member, seatNum; // 인원수, 좌석번호 변수
     while (1)
     {
         printf("좌석을 예약하시겠습니까?(y 또는 n) ");
@@ -67,7 +67,10 @@ void ReserveSeat(int seat[][10]) // 예매하는 과정
                     printf("예약되었습니다.\n");
                 }
                 else // 예약되었으면 (1이면)
+                {
                     printf("이미 예약된 자리입니다.\n");
+                    i--; // i값 감소시켜서 다시 예약하기
+                }
             }
         }
         else if (ans1 == 'n')
