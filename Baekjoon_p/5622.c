@@ -9,7 +9,7 @@
 int main()
 {
     char input[16] = {'\0'};      // 단어의 길이는 2보다 크거나 같고, 15보다 작거나 같다
-    int time = 2, len;            // 총 시간 합산할 변수
+    int time = 0, len;            // 총 시간 합산할 변수
     scanf("%s", input);           // 단어 입력
     len = strlen(input);          // 입력한 단어의 길이
     for (int i = 0; i < len; i++) // 단어 검사
@@ -25,76 +25,82 @@ int main()
             break;
         case 'C':
             time += 3;
-            printf("%d\n", time);
             break;
         // 3
-        case 'G':
+        case 'D':
             time += 4;
             break;
-        case 'H':
+        case 'E':
             time += 4;
             break;
-        case 'I':
+        case 'F':
             time += 4;
-            printf("%d\n", time);
             break;
         // 4
-        case 'J':
+        case 'G':
             time += 5;
             break;
-        case 'K':
+        case 'H':
             time += 5;
             break;
-        case 'L':
+        case 'I':
             time += 5;
             break;
         // 5
-        case 'M':
+        case 'J':
             time += 6;
             break;
-        case 'N':
+        case 'K':
             time += 6;
-            printf("%d\n", time);
             break;
-        case 'O':
+        case 'L':
             time += 6;
             break;
         // 6
-        case 'P':
+        case 'M':
             time += 7;
             break;
-        case 'Q':
+        case 'N':
             time += 7;
             break;
-        case 'R':
-            time += 7;
-            break;
-        case 'S':
+        case 'O':
             time += 7;
             break;
         // 7
-        case 'T':
+        case 'P':
             time += 8;
             break;
-        case 'U':
+        case 'Q':
             time += 8;
-            printf("%d\n", time);
             break;
-        case 'V':
+        case 'R':
+            time += 8;
+            break;
+        case 'S':
             time += 8;
             break;
         // 8
-        case 'W':
+        case 'T':
             time += 9;
+            break;
+        case 'U':
+            time += 9;
+            break;
+        case 'V':
+            time += 9;
+            break;
+        // 9
+        case 'W':
+            time += 10;
             break;
         case 'X':
-            time += 9;
+            time += 10;
             break;
         case 'Y':
-            time += 9;
+            time += 10;
             break;
         case 'Z':
-            time += 9;
+            time += 10;
             break;
         }
     }
