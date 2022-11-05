@@ -10,9 +10,9 @@ int main()
 
     len = strlen(input);
     // printf("%d\n", len);
-    for (int i = 0; i < len;)
+    for (int i = 0; i < len;) // 반복문에서 i++조건 주지 않고 아래 조건문에서 i 증가시키기
     {
-        if (input[i] == 'd' && input[i + 1] == 'z' && input[i + 2] == '=') // i~i+2 문자가 "dz="면
+        if (input[i] == 'd' && input[i + 1] == 'z' && input[i + 2] == '=') // i~i+2 문자가 "dz="면 -각각의 경우 비교
         {
             check++; // 글자수 +1하고
             i += 3;  // i는 3 증가시키기
@@ -53,9 +53,9 @@ int main()
             check++;
             i += 2;
         }
-        else
+        else // 위 경우가 다 아니면
         {
-            check++;
+            check++; // 한 글자로 봄
             i++;
         }
     }
