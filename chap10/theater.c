@@ -29,7 +29,14 @@ int main()
     printf("ID: %s\n", userInformation[0].id);
     printf("비밀번호: %s\n", userInformation[0].password);
     // 로그인 함수 테스트
-    Login(userInformation, seat);*/
+    Login(userInformation, seat);
+    // 회원 정보 출력 테스트
+    for (int i = 0;i < 10;i++)
+    {
+        printf("ID: %s\n", userInformation[i].id);
+        printf("PASSWORD: %s\n", userInformation[i].password);
+    }
+    */
 
     // 시작화면
     while (1)
