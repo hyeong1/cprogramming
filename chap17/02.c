@@ -16,13 +16,16 @@ int main()
         str[i] = (char *)malloc(100); // 방 하나의 크기 100으로 지정
 
     // 문자열 입력
-    printf("문자열 입력: ");
-    for (int i = 0;i < size;i++)
+    for (int i = 0; i < size; i++)
+    {
+        printf("문자열 입력: ");
         scanf("%s", str[i]);
+    }
+
     // 문자열 출력
     printf("입력된 문자열\n");
-    for (int i = 0;i < size;i++)
+    for (int i = 0; i < size; i++)
         printf("%s\n", str[i]);
-        
+
     return 0;
 }
