@@ -19,8 +19,13 @@ void palindrome(char *s)
 {
     int i;
     for (i = 0; i < strlen(s) / 2; i++)
+    {
         if (s[i] != s[strlen(s) - 1 - i])
+        {
             printf("회문이 아닙니다.\n");
-    if (s[i] == s[strlen(s) - 1 - i] && i == strlen(s) / 2)
+            break;
+        }
+    }
+    if (i == strlen(s) / 2)
         printf("회문입니다.\n");
 }
