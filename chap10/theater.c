@@ -1,62 +1,30 @@
 /*
-극장 예매 시스템 (과제 마감: 12월 24일 24:00까지 이메일로 제출-소스파일만(.c파일만))
-시작화면으로 추가할 것
-1. 로그인 -> 선택 시 id, password 입력 - 맞으면 예약 진행/틀리면 다시 id, password 입력받게 해라 (함수) 나중에 로그인해서 내 예약정보까지 확인할 수 있게 할거임
-  - 로그인 시 파일에서 정보 읽어와서 수행
-2. 회원가입 -> 회원정보는 id, password 받아서 구조체 배열로 저장 (함수) -> 회원은 3명
-  - 회원가입 시 회원 정보 파일로 저장 (메모리 동적할당해서 회원가입하면 가산점)
-3. 종료 -> 선택 시 끝 (함수)
-회원가입될 때마다 메모리 할당해서 저장을 해주면? -회원이 늘어날 때마다 메모리 할당해주기
--인덱스 쓰지말고 모두 포인터로 사용
-
-아직 못한 것들
--파일 & 배열 회원 수 제한
--저장된 파일에서 id먼저 가져와서 입력된 값이랑 비교하고
--해당 id의 비밀번호까지 비교해서 로그인 수행하기
--인덱스 모두 포인터로 바꾸기
--시작할 때마다 전 실행에서 입력한 회원 정보들 기억
-생각
-1. 프로그램이 실행되면 파일에 입력된 모든 정보를 main의 구조체 배열로 가져옴
-2. main으로 가져와서 회원 수 제한 - 회원가입하려고 하는데 제한 인원 넘으면 x
-3. 회원가입을 선택할 때마다 동적 메모리 할당하면 가산점
+극장 예매 시스템
+시작화면
+1. 로그인 -> 선택 시 id, password 입력 - 맞으면 예약 진행/틀리면 다시 id, password 입력
+2. 회원가입 -> 회원가입 시 회원 정보 파일로 저장
+3. 종료 -> 선택 시 프로그램 종료
 */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
-typedef struct member // 사용자 회원정보 저장 -회원 3명??
+typedef struct member // 사용자 회원정보 구조체
 {
     char id[10];
     char password[50];
 } JOIN;
 
-void PrintSeat(int seat[][10], int rowSize, int colSize); // 좌석 출력 함수
-void ReserveSeat(int seat[][10]);                         // 예매하는 과정 함수
-void Login(JOIN *userList, int seat[][10]);               // 로그인하는 함수
-void JoinMember(JOIN *userList, FILE *member);            // 회원가입하는 함수
+void PrintSeat(int (*seat)[10], int rowSize, int colSize); // 좌석 출력 함수
+void ReserveSeat(int (*seat)[10]);                         // 예매하는 과정 함수
+int Login(JOIN *userList, int (*seat)[10]);                // 로그인하는 함수
+void JoinMember(JOIN *userList);                           // 회원가입하는 함수
 
 int main()
 {
-    int seat[10][10] = {0};                        // 좌석 - 2차원 배열 생성
-    int userChoice;                                // 시작화면에서 1, 2, 3 선택 결과 저장하는 변수
-    JOIN userInformation[10];                      // 회원가입 인원은 3명
-    FILE *fMembers = fopen("membership.txt", "a"); // "a"는 파일 뒤에 덧붙이기
-    // 프로그램 실행되면 main에서 구조체 배열에 파일 정보들 가져오기
-
-    /*
-    // 회원가입 함수 테스트
-    JoinMember(userInformation);
-    printf("ID: %s\n", userInformation[0].id);
-    printf("비밀번호: %s\n", userInformation[0].password);
-    // 로그인 함수 테스트
-    Login(userInformation, seat);
-    // 회원 정보 출력 테스트
-    for (int i = 0;i < 10;i++)
-    {
-        printf("ID: %s\n", userInformation[i].id);
-        printf("PASSWORD: %s\n", userInformation[i].password);
-    }
-    */
+    int seat[10][10] = {0}; // 좌석 - 2차원 배열 생성
+    int userChoice;         // 시작화면에서 1, 2, 3 선택 결과 저장하는 변수
+    JOIN *userInformation;  // 회원 정보를 저장할 구조체 배열
 
     // 시작화면
     while (1)
@@ -66,11 +34,12 @@ int main()
 
         switch (userChoice)
         {
-        case 1: // 1 선택하면 로그인 함수 실행
-            Login(userInformation, seat);
+        case 1:                                // 1 선택하면 로그인 함수 실행
+            if (!Login(userInformation, seat)) // 로그인 함수가 0 반환하면
+                ReserveSeat(seat);             // 예약 함수 실행
             break;
         case 2: // 2 선택하면 회원가입 함수 실행
-            JoinMember(userInformation, fMembers);
+            JoinMember(userInformation);
             break;
         case 3: // 3 선택하면 강제종료
             exit(0);
@@ -78,31 +47,31 @@ int main()
             break;
         }
     }
-    fclose(fMembers);
-    // ReserveSeat(seat); // 예약하기
     return 0;
 }
 
-void PrintSeat(int seat[][10], int rowSize, int colSize) // 좌석 출력 함수
+void PrintSeat(int (*seat)[10], int rowSize, int colSize) // 좌석 출력 함수
 {
     // 2차원 좌석 출력하기
-    for (int i = 1; i <= 100; i++) // 좌석번호 출력
+    // 좌석번호 출력
+    for (int i = 1; i <= 100; i++)
     {
         printf("%d\t", i);
         if (i % 10 == 0)  // i가 10의 배수일 때마다
             printf("\n"); // 줄바꿈
     }
-    for (int i = 0; i < rowSize; i++) // 좌석 예약 여부 출력
+    // 좌석 예약 여부 출력
+    for (int i = 0; i < rowSize; i++)
     {
         for (int j = 0; j < colSize; j++)
-            printf("%d\t", seat[i][j]);
+            printf("%d\t", *(*(seat + i) + j));
         printf("\n");
     }
 }
 
-void ReserveSeat(int seat[][10]) // 예매하는 과정
+void ReserveSeat(int (*seat)[10]) // 예매하는 과정 함수
 {
-    char ans1;
+    char ans1;           // 사용자의 예약 여부를 저장하는 변수
     int member, seatNum; // 인원수, 좌석번호 변수
     while (1)
     {
@@ -110,12 +79,14 @@ void ReserveSeat(int seat[][10]) // 예매하는 과정
         scanf(" %c", &ans1);
         if (ans1 == 'y')
         {
+            // 좌석 상태 먼저 출력
             PrintSeat(seat, 10, 10);
 
-            // 몇 명 예약하시겠습니까 추가
+            // 예약할 인원 입력받기
             printf("몇 명 예약하시겠습니까? ");
-            scanf("%d", &member);            // 예약할 인원 입력받기
-            for (int i = 0; i < member; i++) // 인원 수 만큼 예약과정 반복하기
+            scanf("%d", &member);
+            // 인원 수 만큼 예약과정 반복하기
+            for (int i = 0; i < member; i++)
             {
                 seatNum = 0; // 좌석 선택 전에 좌석번호 0으로 초기화
                 printf("몇번째 좌석을 예약하시겠습니까? ");
@@ -127,10 +98,10 @@ void ReserveSeat(int seat[][10]) // 예매하는 과정
                     i--; // i 감소시켜서 다시 예약하도록 만들기
                     continue;
                 }
-                if (seat[seatNum / 10][seatNum % 10] == 0) // 예약되지 않았으면
+                if (*(*(seat + (seatNum / 10)) + (seatNum % 10)) == 0) // 예약되지 않았으면
                 {
-                    seat[seatNum / 10][seatNum % 10] = 1; // 1로 바꾸고
-                    printf("예약되었습니다.\n");
+                    *(*(seat + (seatNum / 10)) + (seatNum % 10)) = 1; // 1로 바꾸고
+                    printf("예약되었습니다.\n");                      // 예약완료 문구 출력
                 }
                 else // 예약되었으면 (1이면)
                 {
@@ -144,31 +115,45 @@ void ReserveSeat(int seat[][10]) // 예매하는 과정
     }
 }
 
-void Login(JOIN *userList, int seat[][10]) // 로그인하는 함수 - id, password 입력받아서 비교하기
+int Login(JOIN *userList, int (*seat)[10]) // 로그인하는 함수 - id, password 입력받아서 비교하기
 {
-    char inputId[10], inputPassword[50]; // 사용자가 id, password 입력하는 문자열
-    // id, password 입력받기
+    char inputId[10], inputPassword[50];     // 사용자가 입력한 id, password를 저장할 문자열
+    FILE *fp = fopen("userNumber.txt", "r"); // 회원 수 파일에서 회원 수를 읽어오기 위해서 읽기모드로 파일 열기
+    // 회원 수 파일에서 회원 수 가져온 후 구조체 배열 동적 할당 해주기
+    int userN; // 회원 수
+    fscanf(fp, "%d", &userN);
+    userList = (JOIN *)malloc(sizeof(JOIN) * userN); // 회원 수 만큼 사용자 정보 배열 동적 메모리 할당
+
+    // 아직 가입한 회원이 없다면
+    if (userN == 0)
+    {
+        printf("가입 정보가 없습니다. 회원가입을 먼저 해주세요.\n");
+        exit(0);
+    }
+    fclose(fp); // 사용자 정보 배열에 동적 할당만 해주고 회원 수 파일은 닫기
+
+    // 회원 정보(id, password) 가져오기
+    fp = fopen("membership.txt", "r"); // 회원 정보 파일 열어서
+    // 동적 할당한 구조체 배열에 파일 정보 넣기 (파일에 있는 id, password를 배열에 넣기)
+    for (int i = 0; i < userN; i++)
+        fscanf(fp, "%s %s", &((userList + i)->id), &((userList + i)->password));
+
+    // 로그인하려는 사용자의 id, password 입력받기
     printf("id: ");
     scanf("%s", inputId);
     printf("비밀번호: ");
     scanf("%s", inputPassword);
 
-    // strcmp 함수 사용해서 id, password 비교하고 싶다
-    // strcmp(inputId, userInformation[i].id)
-    /*
-    for (int i = 0; i < 10; i++)
-        if (!strcmp(inputId, userList[i].id)) // main에 있는 유저 정보 구조체 배열에 입력한 id와 password가 있는지 검사
-            return 0; // 같으면 0 반환하기
-    */
+    // id, password 비교 후 맞으면 예약 수행, 틀리면 다시 입력
     while (1)
     {
         for (int i = 0; i < 10; i++)
-            if (!strcmp(inputId, userList[i].id) && !strcmp(inputPassword, userList[i].password)) // main에 있는 유저 정보 구조체 배열에 입력한 id와 password가 있는지 검사
+            if (!strcmp(inputId, (userList + i)->id) && !strcmp(inputPassword, (userList + i)->password)) // main에 있는 유저 정보 구조체 배열에 입력한 id와 password가 있는지 검사
             {
-                ReserveSeat(seat); // 같으면 예약하는 함수 실행하기
-                exit(0);           // 강제종료
+                free(userList); // id, password 제대로 입력했으면 사용자 정보 배열에 동적 할당한 메모리는 반납
+                return 0;       // 0 반환하고 로그인 함수 종료
             }
-        // 반복문을 다 돌았으면 회원정보에 없는 id, password를 입력한 것이므로 다시 입력받기
+        // for문을 다 돌았으면 회원정보에 없는 id, password를 입력한 것이므로 다시 입력받기
         printf("아이디, 비밀번호를 다시 입력하세요\n");
         memset(inputId, 0, sizeof inputId); // 다시 입력받기 전에 이전에 받은 문자열 비워주기
         memset(inputPassword, 0, sizeof inputPassword);
@@ -177,19 +162,34 @@ void Login(JOIN *userList, int seat[][10]) // 로그인하는 함수 - id, password 입�
         printf("비밀번호: ");
         scanf("%s", inputPassword);
     }
+    fclose(fp);
 }
 
-void JoinMember(JOIN *userList, FILE *member) // 회원가입하는 함수 - member 구조체 배열을 매개변수로 받음
+void JoinMember(JOIN *userList) // 회원가입하는 함수
 {
-    static int userNum = 0;      // userInformation 구조체 배열의 인덱스로 사용할 변수 -> 실행될 때마다 인덱스가 원하는대로 증가하지 않고 0부터 시작함 -> static 변수로 바꿈
-    printf("%d번째\n", userNum); // 인덱스 변수 확인용
-    printf("사용할 id를 입력하세요: ");
-    scanf("%s", userList[userNum].id);
-    // fscanf(fp, "%", &변수); --> 파일에 입력하기
+    char newId[10], newPassword[50]; // 사용자가 회원가입 시 새로 입력하는 id, password를 저장하는 문자열
+    // 회원가입 함수 수행 시 회원 수를 증가시켜야 하므로
+    FILE *fp = fopen("userNumber.txt", "r"); // 회원 수가 저장되어있는 파일 읽기모드로 열기
+    int userN;                               // 회원 수 변수
+    fscanf(fp, "%d", &userN);                // 파일에 있는 회원 수 가져오기
+    fclose(fp);                              // 회원 수만 가져오고 파일 닫기
 
-    printf("사용할 password를 입력하세요: ");
-    scanf("%s", userList[userNum].password);
-    fprintf(member, "%s\t%s\n", userList[userNum].id, userList[userNum].password);
+    // 회원 수를 증가시키고 파일에 덮어쓰기 위해 쓰기모드로 열기
+    fp = fopen("userNumber.txt", "w");
+    userN++; // 회원가입 할 것이므로 회원수 증가
+    fprintf(fp, "%d\n", userN);
+    fclose(fp); // 회원수만 증가시키고 파일 닫기
 
-    userNum++; // 회원가입하고 userNum 증가시키고 함수 종료
+    // 회원정보 membership.txt 파일에 덧붙여서 저장하기
+    fp = fopen("membership.txt", "a");
+    // 회원정보 입력
+    printf("사용하실 ID를 입력하세요: ");
+    scanf("%s", newId);
+    printf("사용하실 비밀번호를 입력하세요: ");
+    scanf("%s", newPassword);
+
+    // 파일에 정보 입력하기
+    fprintf(fp, "%s %s\n", newId, newPassword);
+
+    fclose(fp);
 }
