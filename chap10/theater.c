@@ -147,7 +147,7 @@ int Login(JOIN *userList, int (*seat)[10]) // 로그인하는 함수 - id, password 입�
     // id, password 비교 후 맞으면 예약 수행, 틀리면 다시 입력
     while (1)
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < userN; i++)                                                                   // id, password 확인은 회원 수 만큼 반복
             if (!strcmp(inputId, (userList + i)->id) && !strcmp(inputPassword, (userList + i)->password)) // main에 있는 유저 정보 구조체 배열에 입력한 id와 password가 있는지 검사
             {
                 free(userList); // id, password 제대로 입력했으면 사용자 정보 배열에 동적 할당한 메모리는 반납
