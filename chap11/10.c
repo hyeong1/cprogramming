@@ -28,5 +28,6 @@ void GetLcmGcd(int x, int y, int *pLcm, int *pGcd)
     }
     *pGcd = num1;
 
+    // 최소공배수 찾기
     *pLcm = (x * y) / *pGcd;
 }

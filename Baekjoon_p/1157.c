@@ -31,6 +31,14 @@ int main()
             }
         }
     }
+    /* 문자 비교-다른 코드 (이해하기)
+    for(int i = 0; i < size; i++)
+    {
+        if(arr[i] >= 'a') //arr[i]가 a의 아스키코드 값보다 크거나 같으면
+            alphabet[arr[i] - 'a']++; //arr[i]에 a의 아스키코드 값을 뺀 alphabet[] 자리에 ++ (arr[i]가 a면 97-97 => alphabet[0])
+        else if((arr[i] >= 'A') && (arr[i] < 'a'))
+            alphabet[arr[i] - 'A']++;
+    }*/
     // alphbet 배열 출력
     // for (int i = 0; i < 26; i++)
     //    printf("%d ", alphabet[i]);
@@ -59,6 +67,20 @@ int main()
     // max값이랑 같은 값이 하나이상 존재하면 '?' 출력
     else             // 중복인덱스 값보다 최댓값인덱스 값이 작거나 같으면
         printf("?"); // ? 출력
+
+    /* 결과 출력-다른코드 (이해하기)
+    for(int i = 0; i < 26; i++)
+    {
+        if(maxCnt < alphabet[i])
+        {
+            maxCnt = alphabet[i];
+            result = 'A' + i;
+        }
+        else if(maxCnt == alphabet[i])
+            result = '?';
+    }
+
+    printf("%c", result);*/
 
     return 0;
 }

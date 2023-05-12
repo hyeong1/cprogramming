@@ -27,7 +27,7 @@ int main()
     for (int i = 1; i < 8; i++)
         if (min > dis[i])
             min = dis[i];
-    printf("최소 거리: %d\n", min);
+    printf("%d\n", min);
 
     return 0;
 }

@@ -27,9 +27,7 @@ void ShowDigit(int x)
 }*/
 void ShowDigit(int x)
 {
-    if (x > 0)
-    {
+    if (x > 10)
         ShowDigit(x / 10); // 몫 순환호출
-        printf("%d ", x % 10);
-    }
+    printf("%d ", x % 10);
 }

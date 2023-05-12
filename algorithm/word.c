@@ -7,7 +7,9 @@ int main() {
     scanf("%d %d", &wordN, &find);
 	// 단어 입력 받기
     for (int i = 0;i < wordN;i++)
-		scanf("%s\n", word[i]);
+		scanf("%s", word[i]);
+	for (int i = 0;i < wordN;i++)
+		printf("%s\n", word[i]);
 	// 입력받은 단어 정렬 -길이가 짧을수록, 사전 순일수록 앞으로
     
 	return 0;

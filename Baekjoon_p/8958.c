@@ -17,7 +17,7 @@ int main()
         int resultLen = strlen(resultOX); // 입력받은 ox결과의 총 길이-널값 제외한 문자열의 길이
         for (int i = 0;i < resultLen;i++) 
         {
-            if (resultOX[i] == 'X') // X면 점수 0점
+            if (resultOX[i] == 'X') // X면 점수 0점  "",''
                 score = 0;
             else if (resultOX[i] == 'O') // O면 점수 1점
             {   // 바로 score = 1;하지 않고 앞 문자 한 번 더 비교

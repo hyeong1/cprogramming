@@ -10,6 +10,7 @@ int main()
         printf("%d", -1);
         return 0;
     }
-    printf("%d", (fix)/(price-variable) + 1);
+    printf("%d", (fix) / (price - variable) + 1);
+
     return 0;
 }
